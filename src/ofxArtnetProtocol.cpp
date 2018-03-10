@@ -26,6 +26,15 @@
 
 ofxArtnetProtocol::ofxArtnetProtocol() {}
 
+
+void ofxArtnetProtocol::begin()
+{
+	udpConnection.Create();
+	udpConnection.Bind(ART_NET_PORT);
+	udpConnection.SetNonBlocking(true);
+	bConnected = true;
+}
+
 void ofxArtnetProtocol::begin(const char* ip)
 {
     bConnected = udpConnection.Create();

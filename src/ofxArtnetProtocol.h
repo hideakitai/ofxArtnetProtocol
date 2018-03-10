@@ -53,6 +53,7 @@ class ofxArtnetProtocol// : public ofThread
 public:
     ofxArtnetProtocol();
 
+    void begin();
     void begin(const char* ip);
     uint16_t read();
     void setDmxData(uint8_t* data, uint16_t size);
