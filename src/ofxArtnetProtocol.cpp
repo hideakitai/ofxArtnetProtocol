@@ -38,6 +38,10 @@ void ofxArtnetProtocol::begin()
 void ofxArtnetProtocol::begin(const char* ip)
 {
     bConnected = udpConnection.Create();
+
+		udpConnection.SetEnableBroadcast(true);
+		udpConnection.SetReuseAddress(true);
+
     if (!bConnected) {
         ofLogWarning("ofxArtnetProtocol") << "UDP socket creation failed!!";
         udpConnection.Close();
@@ -136,7 +140,7 @@ void ofxArtnetProtocol::send(uint8_t* data, uint16_t universe, uint16_t size)
     artnet_send_packet[8] = packet.opcode[0];
     artnet_send_packet[9] = packet.opcode[1];
     artnet_send_packet[10] = 0;
-    artnet_send_packet[11] = 0;    // ProtVer (Art-Net Protocol Revision)
+    artnet_send_packet[11] = 14;    // ProtVer (Art-Net Protocol Revision)
     artnet_send_packet[12] = seq;
     artnet_send_packet[13] = 0;                             // physical input port of DMX
     artnet_send_packet[14] = packet.universe[0];
