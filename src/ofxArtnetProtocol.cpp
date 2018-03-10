@@ -57,7 +57,7 @@ void ofxArtnetProtocol::begin(const char* ip)
 
 uint16_t ofxArtnetProtocol::read()
 {
-    if (!bConnected) return;
+    if (!bConnected) return 0;
 
     int packetSize = udpConnection.Receive((char*)artnetPacket, MAX_BUFFER_ARTNET);
 
